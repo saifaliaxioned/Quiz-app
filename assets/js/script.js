@@ -48,7 +48,7 @@ const submit = () => {
       const reloadBtn = document.createElement('div');
       reloadBtn.classList.add('score-text');
       reloadBtn.innerHTML = `
-      <h2>your score is ${score}/${questions.length}</h2>
+      <h2>You answered ${score}/${questions.length} questions correctly</h2>
       <button class="reload-btn" onclick="quizReload()">Reload</button>
       `;
       wrapper.appendChild(reloadBtn);
@@ -62,7 +62,7 @@ const quizReload = () => {
   quizContainer.classList.remove('hide-content');
   counter = score = 0;
   updateQuiz(counter);
-}
+};
 
 const updateQuiz = (counter) => {
   let quizobj = questions[counter];
@@ -78,7 +78,7 @@ const updateQuiz = (counter) => {
     <label for="ans4" id="option4">${quizobj.d}</label></li>
     </ul>
     <div class="submit-btn" onclick="submit()"><input type="submit" value="submit"></div>`;
-}
+};
 
 const checkAnswer = () => {
   let ansStore;
@@ -89,14 +89,14 @@ const checkAnswer = () => {
     }
   });
   return ansStore;
-}
+};
 
 if (questions.length !== 0) {
   quizContainer = document.createElement('div');
   quizContainer.classList.add('quiz-container');
   wrapper.appendChild(quizContainer);
   updateQuiz(counter);
-}
+};
 
 
 

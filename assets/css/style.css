@@ -84,6 +84,7 @@ sub { bottom: -.25em; }
 /*for all*/
 body {
   box-sizing: border-box;
+  background-color: #D1DAE7;
   font-family: sans-serif;
 }
 
@@ -130,19 +131,22 @@ li {
   width: 500px;
   min-width: 400px;
   border-radius: 10px;
+  background-color: #fff;
   overflow: hidden;
-  box-shadow: 1px 1px 10px #464141;
+  box-shadow: 3px 6px 14px 2px #646464;
 }
 
+.quiz-container h1 {  padding: 60px 30px 20px; }
+.score-text h2{  padding: 20px 30px; }
+
 .quiz-container h1,.score-text h2 {
-  padding: 20px 30px;
-  font-size: 20px;
+  font-size: 25px;
   font-weight: bold;
   text-align: center;
 }
 
 .answer-items {
-  padding: 10px 30px 30px;
+  padding: 10px 30px 60px;
   display: flex;
   flex-direction: column;
   gap: 20px;
