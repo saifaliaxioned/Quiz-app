@@ -1,10 +1,10 @@
 const questions = [{
   question: 'Which language runs in a web browser?',
-  a: 'java',
-  b: 'c',
-  c: 'python',
-  d: 'javascript',
-  right: 'javascript'
+  a: 'Java',
+  b: 'C',
+  c: 'Python',
+  d: 'Javascript',
+  right: 'Javascript'
 }, {
   question: 'What does CSS stand for?',
   a: 'Central Style Sheets',
@@ -32,36 +32,65 @@ const wrapper = document.querySelector('.wrapper');
 let quizContainer;
 
 let counter = 0;
+let score = 0;
 
 const submit = () => {
-  if (counter < questions.length-1) {
-    counter++;
-    console.log(counter);
-    updateQuiz(counter);
-  } else {
-    alert('submitted');
-    counter = 0;
-    updateQuiz(counter);
+  const answer = checkAnswer();
+  if (answer == questions[counter].right) {
+    score++;
   }
-  // createQuiz(counter);
+
+  if (answer !== undefined) {      
+  if (counter < questions.length - 1 ) {
+      counter++;
+      updateQuiz(counter);
+    } else {
+      quizContainer.classList.add('hide-content');
+      const reloadBtn = document.createElement('div');
+      reloadBtn.classList.add('score-text');
+      reloadBtn.innerHTML = `
+      <h2>your score is ${score}/${questions.length}</h2>
+      <button class="reload-btn" onclick="quizReload()">Reload</button>
+      `;
+      wrapper.appendChild(reloadBtn);
+    }
+  }
 };
+
+const quizReload = () => {
+  scoreText = document.querySelector('.score-text');
+  scoreText.remove();
+  quizContainer.classList.remove('hide-content');
+  counter = score = 0;
+  updateQuiz(counter);
+}
 
 const updateQuiz = (counter) => {
   let quizobj = questions[counter];
   quizContainer.innerHTML = `<h1>${quizobj.question}</h1>
   <ul class="answer-items">
-  <li><input type="radio" name="answer" id="ans1" class="answer">
+  <li><input type="radio" name="answer" id="${quizobj.a}" class="answer">
   <label for="ans1" id="option1">${quizobj.a}</label></li>
-  <li><input type="radio" name="answer" id="ans2" class="answer">
+  <li><input type="radio" name="answer" id="${quizobj.b}" class="answer">
   <label for="ans2" id="option2">${quizobj.b}</label></li>
-  <li><input type="radio" name="answer" id="ans3" class="answer">
+  <li><input type="radio" name="answer" id="${quizobj.c}" class="answer">
   <label for="ans3" id="option3">${quizobj.c}</label></li>
-    <li><input type="radio" name="answer" id="ans4" class="answer">
+    <li><input type="radio" name="answer" id="${quizobj.d}" class="answer">
     <label for="ans4" id="option4">${quizobj.d}</label></li>
     </ul>
     <div class="submit-btn" onclick="submit()"><input type="submit" value="submit"></div>`;
 }
 
+const checkAnswer = () => {
+  let ansStore;
+  const inputs = document.querySelectorAll('.answer');
+  inputs.forEach(ans => {
+    if (ans.checked) {
+      ansStore = ans.id;
+    }
+  });
+  return ansStore;
+}
 
 if (questions.length !== 0) {
   quizContainer = document.createElement('div');
