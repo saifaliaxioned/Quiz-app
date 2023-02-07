@@ -29,10 +29,9 @@ const questions = [{
 }];
 
 const wrapper = document.querySelector('.wrapper');
-let quizContainer;
-
-let counter = 0;
-let score = 0;
+let quizContainer,
+  counter = 0,
+  score = 0;
 
 const submit = () => {
   const answer = checkAnswer();
@@ -40,8 +39,8 @@ const submit = () => {
     score++;
   }
 
-  if (answer !== undefined) {      
-  if (counter < questions.length - 1 ) {
+  if (answer !== undefined) {
+    if (counter < questions.length - 1) {
       counter++;
       updateQuiz(counter);
     } else {
